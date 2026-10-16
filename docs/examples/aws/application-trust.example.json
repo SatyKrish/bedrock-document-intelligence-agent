@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ApprovedOperatorOnly",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "__APP_OPERATOR_ROLE_ARN__"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}

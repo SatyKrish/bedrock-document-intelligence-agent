@@ -1,0 +1,24 @@
+{
+  "currency": "USD",
+  "status": "ILLUSTRATIVE_NOT_APPROVED",
+  "requestedCumulativeBudgetUsd": 15,
+  "priorReservationCarriedForward": 0,
+  "failureReservations": {
+    "oneRuntimeEightHoursAtHigherV2FullResources": 6.2464,
+    "natAndIpv4TwentyFourHours": 1.2,
+    "natOneGb": 0.045,
+    "internetOneGb": 0.09,
+    "twoTurnsModelAllowance": 1,
+    "newRequestsLogsAndSync": 0.5
+  },
+  "unallocatedContingency": 5.9186,
+  "totalReserved": 15,
+  "billingCapEnforced": false,
+  "enforcement": "One session/two serial inputs, no write replay, 45-minute setup admission, 20-minute test, 30-minute compute-stop trigger, 90-minute cleanup start, 120-minute cleanup target, cleanup-only backstop through 24 hours",
+  "failureScenarioLimits": "Eight hours is per compute lifetime, not an overall session/spend cap. Failed host, credentials, control plane, inference cancellation or cleanup can exceed this reservation. No automatic budget increase or extra paid attempt is authorized.",
+  "priorInvoiceReconciled": false,
+  "retainedStorageReservationMonths": 1,
+  "newBuildsKeysImages": 0,
+  "stockRuntimeConfiguredHours": 8,
+  "liveAwsValidated": false
+}

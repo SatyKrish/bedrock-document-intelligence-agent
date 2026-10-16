@@ -1,0 +1,81 @@
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+------
+
+This product includes the following third-party software/licensing:
+
+** @aws-cdk/toolkit-lib - https://github.com/aws/aws-cdk
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @aws-sdk/client-bedrock-agentcore - https://github.com/aws/aws-sdk-js-v3
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @aws-sdk/client-bedrock-agentcore-control - https://github.com/aws/aws-sdk-js-v3
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @aws-sdk/client-bedrock-runtime - https://github.com/aws/aws-sdk-js-v3
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @aws-sdk/client-cloudformation - https://github.com/aws/aws-sdk-js-v3
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @aws-sdk/client-resource-groups-tagging-api - https://github.com/aws/aws-sdk-js-v3
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @aws-sdk/client-sts - https://github.com/aws/aws-sdk-js-v3
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @aws-sdk/credential-providers - https://github.com/aws/aws-sdk-js-v3
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @smithy/shared-ini-file-loader - https://github.com/smithy-lang/smithy-typescript
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+License: Apache-2.0
+
+** @commander-js/extra-typings - https://github.com/tj/commander.js
+Copyright (c) 2011 TJ Holowaychuk <tj@vision-media.ca>
+License: MIT
+
+** commander - https://github.com/tj/commander.js
+Copyright (c) 2011 TJ Holowaychuk <tj@vision-media.ca>
+License: MIT
+
+** dotenv - https://github.com/motdotla/dotenv
+Copyright (c) 2015, Scott Motte
+License: BSD-2-Clause
+
+** fflate - https://github.com/101arrowz/fflate
+Copyright (c) 2020 Arjun Barrett
+License: MIT
+
+** handlebars - https://github.com/handlebars-lang/handlebars.js
+Copyright (C) 2011-2019 by Yehuda Katz
+License: MIT
+
+** ink - https://github.com/vadimdemedes/ink
+Copyright (c) Vadim Demedes <vdemedes@gmail.com> (https://vadimdemedes.com)
+License: MIT
+
+** ink-link - https://github.com/sindresorhus/ink-link
+Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+License: MIT
+
+** ink-spinner - https://github.com/vadimdemedes/ink-spinner
+Copyright (c) Vadim Demedes <vdemedes@gmail.com> (https://vadimdemedes.com)
+License: MIT
+
+** react - https://github.com/facebook/react
+Copyright (c) Meta Platforms, Inc. and affiliates.
+License: MIT
+
+** zod - https://github.com/colinhacks/zod
+Copyright (c) 2020 Colin McDonnell
+License: MIT

@@ -1,0 +1,20 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AssumeFromBmaSession",
+      "Effect": "Allow",
+      "Principal": { "Service": "bedrock-mantle.amazonaws.com" },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": { "aws:SourceAccount": "${AWS::AccountId}" },
+        "ArnLike": {
+          "aws:SourceArn": [
+            "arn:${AWS::Partition}:bedrock-mantle:${AWS::Region}:${AWS::AccountId}:session/*",
+            "arn:${AWS::Partition}:bedrock-mantle:${AWS::Region}:${AWS::AccountId}:project/*"
+          ]
+        }
+      }
+    }
+  ]
+}

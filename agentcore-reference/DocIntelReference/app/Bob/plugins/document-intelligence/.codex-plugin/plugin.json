@@ -1,0 +1,6 @@
+{
+  "name": "document-intelligence",
+  "version": "0.1.0",
+  "description": "Source-grounded document comparisons and generate/examine/correct reports.",
+  "skills": "./skills/"
+}

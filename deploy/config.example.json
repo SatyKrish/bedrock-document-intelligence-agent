@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "deploymentId": "my-demo",
+  "profile": "my-approved-profile",
+  "account": "123456789012",
+  "region": "us-east-1",
+  "mode": "hosted",
+  "model": "openai.gpt-5.6-luna",
+  "network": {
+    "kind": "new"
+  },
+  "principals": [
+    {
+      "subject": "EXACT_APPROVED_OIDC_SUBJECT",
+      "documents": ["acme-2024", "beta-2024", "kpis-2024"]
+    }
+  ],
+  "identity": {
+    "issuer": "https://approved-issuer.example",
+    "jwksUrl": "https://approved-issuer.example/.well-known/jwks.json",
+    "audience": "https://documents.example.com/mcp",
+    "spaClientId": "approved-public-spa-client",
+    "connectOrigins": ["https://approved-issuer.example"],
+    "chatgptClient": "predefined"
+  },
+  "publicOrigin": "https://documents.example.com",
+  "certificateArn": "arn:aws:acm:us-east-1:123456789012:certificate/00000000-0000-0000-0000-000000000000",
+  "amiId": "ami-00000000000000000",
+  "costAllowanceUsd": 5,
+  "termsReviewed": false,
+  "availabilityZones": ["us-east-1a", "us-east-1b"],
+  "hostedZone": {
+    "id": "Z0000000000000",
+    "name": "example.com"
+  }
+}

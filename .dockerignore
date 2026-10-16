@@ -1,0 +1,3 @@
+**
+# Runtime builds use official CLI app/<owner> contexts.
+# The standalone app uses deployment/App.Dockerfile.dockerignore.

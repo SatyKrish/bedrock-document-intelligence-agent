@@ -1,0 +1,39 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyOtherMountClients",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": [
+        "s3files:ClientMount",
+        "s3files:ClientWrite",
+        "s3files:ClientRootAccess"
+      ],
+      "Resource": "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__OUTPUT_FS_ID__",
+      "Condition": {
+        "ArnNotEquals": {
+          "aws:PrincipalArn": "arn:aws:iam::__ACCOUNT_ID__:role/__OWNER_RUNTIME_ROLE_NAME__"
+        }
+      }
+    },
+    {
+      "Sid": "OwnedWriter",
+      "Effect": "Allow",
+      "Action": [
+        "s3files:ClientMount",
+        "s3files:ClientWrite",
+        "s3files:ClientRootAccess"
+      ],
+      "Resource": "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__OUTPUT_FS_ID__",
+      "Principal": {
+        "AWS": "arn:aws:iam::__ACCOUNT_ID__:role/__OWNER_RUNTIME_ROLE_NAME__"
+      },
+      "Condition": {
+        "ArnEquals": {
+          "s3files:AccessPointArn": "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__OUTPUT_FS_ID__/access-point/__OUTPUT_AP_ID__"
+        }
+      }
+    }
+  ]
+}

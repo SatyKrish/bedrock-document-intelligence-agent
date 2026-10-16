@@ -1,0 +1,21 @@
+node_modules
+bin
+.runtime-build
+runtime/vendor
+.git
+.env
+.state
+.deployment
+cdk.out
+dist
+deploy/config.json
+
+# The standalone web/API image never needs generated runtime projects or their local state.
+agentcore-reference
+**/node_modules
+**/.env
+**/.env.*
+**/.aws
+**/.codex
+**/.cli
+**/cdk.out

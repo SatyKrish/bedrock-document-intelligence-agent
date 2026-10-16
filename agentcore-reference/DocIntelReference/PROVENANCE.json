@@ -1,0 +1,31 @@
+{
+  "generator": "@aws/agentcore",
+  "version": "0.31.1",
+  "integrity": "sha512-3G+7banPKiSW0DVgDWAFckfEalnqWnyD7iFh+yf5IVHzcPJR3RSVx0rGYhmuy3hYvouLSzMRgx4X/8XfW4QldA==",
+  "createdWithOfficialCli": true,
+  "lifecycleSha256": "d128afec9bd1b5025643fba21b1ed000cf212a34267250d1151d323ade400d7f",
+  "lifecycleUnmodified": true,
+  "buildInputs": {
+    "runtime": "public.ecr.aws/lambda/microvms@sha256:9628f96011ba10d4b672e18301ce67807db9cb88027e5da892b1ca7169effe1e",
+    "uv": "ghcr.io/astral-sh/uv@sha256:c4ca260ce2a921fb9ea59c6619d4c88c34990b4272524115ab61a70b647d2755",
+    "python": {
+      "version": "3.13.16",
+      "standaloneRelease": "20261013",
+      "source": "https://github.com/astral-sh/python-build-standalone/releases/tag/20261013"
+    },
+    "cloudwatch": {
+      "url": "https://amazoncloudwatch-agent.s3.amazonaws.com/amazon_linux/arm64/latest/amazon-cloudwatch-agent.rpm",
+      "sha256": "d35a72c2265760238745e02d88d71fbc2f2b2733ccb9c7a38283722a7e8ce83a",
+      "note": "Documented official URL is mutable; exact SHA256 is enforced before use. Drift fails closed."
+    },
+    "codexVersion": "0.154.0"
+  },
+  "changesToGeneratedRuntime": "Documented configuration, plugins, dependency lock and Docker input pins; stock lifecycle unchanged. Explicitly approved project CDK retention/build-network policy applied.",
+  "modelForApplicationAcceptance": "openai.gpt-6-luna",
+  "applicationImageStatus": "The standalone TypeScript app image is outside the generated runtime project; its current Dockerfile is not digest-pinned or newly built/scanned.",
+  "deploymentPolicy": {
+    "source": "agentcore/cdk/lib/reference-deployment-policy.ts",
+    "sha256": "1a408c0a0b70bb88086e1557a1493948f0ce1bad7ce20369faf34a8b97a3ad92",
+    "approvedScope": "Retain resources and disable automatic ECR/log expiry; builders use AWS-managed networking; remove unused ENI grants and scope source asset reads."
+  }
+}

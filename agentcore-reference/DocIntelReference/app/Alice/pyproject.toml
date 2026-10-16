@@ -1,0 +1,21 @@
+[project]
+name = "Alice"
+version = "0.1.0"
+description = "AgentCore Runtime environment for Bedrock Managed Agents"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aws-opentelemetry-distro",
+    "bedrock-agentcore",
+]
+
+# The dependencies of client.py. The image build runs `uv sync --no-dev`.
+[dependency-groups]
+dev = [
+    "aws-bedrock-token-generator>=1.1.0",
+    "boto3>=1.43.0",
+    "openai>=3.16.2",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,136 @@
+{
+  "status": "PROPOSED_HELD_NOT_APPROVED_NOT_EXECUTED",
+  "preparedUtc": "2026-10-15",
+  "region": "us-east-1",
+  "newRunRequired": true,
+  "reuse": {
+    "vpc": "REPLACE_ISOLATED_REFERENCE_VPC",
+    "privateSubnet": "REPLACE_REFERENCE_PRIVATE_SUBNET",
+    "privateMainRouteTable": "REPLACE_REFERENCE_MAIN_RT",
+    "bobRuntimeSecurityGroup": "REPLACE_BOB_RUNTIME_SG",
+    "s3Gateway": "REPLACE_RETAINED_S3_GATEWAY"
+  },
+  "new": {
+    "publicSubnet": {
+      "cidr": "10.88.0.64/26",
+      "availabilityZoneId": "use1-az1",
+      "mapPublicIpOnLaunch": false
+    },
+    "internetGateways": 1,
+    "publicRouteTables": 1,
+    "elasticIpv4Addresses": 1,
+    "natGateway": {
+      "AvailabilityMode": "zonal",
+      "ConnectivityType": "public",
+      "count": 1
+    }
+  },
+  "routeChanges": [
+    {
+      "routeTable": "NEW_PUBLIC_RT",
+      "destination": "0.0.0.0/0",
+      "target": "NEW_IGW",
+      "operation": "CreateRoute"
+    },
+    {
+      "routeTable": "RETAINED_REFERENCE_MAIN_RT",
+      "destination": "0.0.0.0/0",
+      "target": "NEW_NAT",
+      "operation": "CreateRoute",
+      "abortIfAnyDefaultExists": true
+    }
+  ],
+  "securityChanges": [
+    {
+      "owner": "bob",
+      "group": "RETAINED_BOB_RUNTIME_SG",
+      "direction": "egress",
+      "protocol": "tcp",
+      "fromPort": 443,
+      "toPort": 443,
+      "cidrIpv4": "0.0.0.0/0",
+      "recordRuleId": true
+    }
+  ],
+  "nativeChange": {
+    "owner": "bob",
+    "deploymentController": "official @aws/agentcore 0.31.1",
+    "lifecycleSeconds": {
+      "idle": 28800,
+      "maximum": 28800
+    },
+    "sessionStorage": "/mnt/workspace",
+    "newBuilds": 0,
+    "newImages": 0,
+    "newKeys": 0,
+    "newRoles": 0,
+    "resourceReplacements": 0,
+    "requireExactTemplateComparison": true,
+    "imageBinding": "Explicit proposed CDK ContainerUri @sha256 override; no CLI schema image field",
+    "preUpdatePreservationGate": "Verify Bob has no session/storage state before native update; halt on uncertainty",
+    "changedBobProperties": [
+      "AgentRuntimeArtifact",
+      "EnvironmentVariables",
+      "FilesystemConfigurations",
+      "LifecycleConfiguration"
+    ]
+  },
+  "iamChange": {
+    "role": "RETAINED_BOB_SESSION_ROLE",
+    "onlyChange": "model condition openai.gpt-6-luna -> openai.gpt-5.6-luna",
+    "saveAndRestorePriorPolicyOnlyIfApproved": true
+  },
+  "fixture": {
+    "owner": "bob",
+    "key": "skills/hello-bma/SKILL.md",
+    "conditionalPut": "If-None-Match: *",
+    "trustedOperatorOnly": true
+  },
+  "execution": {
+    "newSessions": 1,
+    "serialTurns": 2,
+    "plannedComputeMinutes": 30,
+    "automaticWriteReplay": false,
+    "initialAcceptance": [
+      "stock hello-bma command evidence",
+      "verification.txt S3 HEAD/GET exact bytes"
+    ],
+    "setupAdmissionMinutes": 45,
+    "testDeadlineMinutes": 20,
+    "computeStopTriggerMinutesAfterActivation": 30
+  },
+  "cleanup": {
+    "approvalRequired": true,
+    "clockStarts": "executor armed before resource creation",
+    "removeOnly": [
+      "new Bob egress rule",
+      "private default route if exact new NAT target",
+      "new NAT",
+      "new EIP after unassociated",
+      "new public route/association/table/subnet",
+      "new IGW after detach"
+    ],
+    "retain": [
+      "existing private infrastructure",
+      "native stack and Runtime configuration",
+      "all sessions/data/objects/filesystems",
+      "images/keys/logs",
+      "shared AWS-managed EventBridge rule"
+    ],
+    "cleanupStartsByMinutes": 90,
+    "natAndEipRemovalTargetMinutes": 120,
+    "cleanupOnlyBackstopHours": 24,
+    "requirePositiveDeleteEvidenceAndExactIdAbsence": true
+  },
+  "budgetDecisionRequired": true,
+  "invoiceOrEnforcedCap": false,
+  "forbidden": [
+    "unrelated application changes",
+    "new interface endpoints",
+    "new public app endpoint",
+    "OAuth/credential changes",
+    "account-wide observability writes"
+  ],
+  "requestedCumulativeBudgetUsd": 15,
+  "billingCapEnforced": false
+}

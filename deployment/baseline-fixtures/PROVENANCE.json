@@ -1,0 +1,8 @@
+{
+  "source": "https://docs.aws.amazon.com/bedrock/latest/userguide/samples/bma-examples.zip",
+  "bundleSha256": "0cda88723f65079872824b2c64948c2e2379157814578255acefb7cbd6850013",
+  "member": "bma/acr/skills/hello-bma/SKILL.md",
+  "skillSha256": "58f3b460a8e5af26664634d53fbb2da0dbd3c2ec6d99f9e93b1e0c02669f0bdf",
+  "stockSkillUnmodified": true,
+  "stockCliLifecycleUnmodified": true
+}

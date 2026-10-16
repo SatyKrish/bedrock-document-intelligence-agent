@@ -1,0 +1,171 @@
+{
+  "$schema": "https://schema.agentcore.aws.dev/v1/agentcore.json",
+  "name": "DocIntelReference",
+  "version": 1,
+  "managedBy": "CDK",
+  "tags": {
+    "agentcore:created-by": "agentcore-cli",
+    "agentcore:project-name": "DocIntelReference"
+  },
+  "runtimes": [
+    {
+      "name": "Alice",
+      "build": "Container",
+      "entrypoint": "main.py",
+      "codeLocation": "app/Alice/",
+      "dockerfile": "Dockerfile",
+      "runtimeVersion": "PYTHON_3_14",
+      "networkMode": "VPC",
+      "protocol": "HTTP",
+      "additionalPolicies": [],
+      "tags": {
+        "agentcore:template": "BedrockManagedAgents"
+      },
+      "lifecycleConfiguration": {
+        "idleRuntimeSessionTimeout": 600,
+        "maxLifetime": 1800
+      },
+      "filesystemConfigurations": [
+        {
+          "sessionStorage": {
+            "mountPath": "/mnt/home"
+          }
+        },
+        {
+          "s3FilesAccessPoint": {
+            "accessPointArn": "arn:aws:s3files:us-east-1:111122223333:file-system/fs-11111111111111111/access-point/fsap-11111111111111111",
+            "mountPath": "/mnt/bma"
+          }
+        },
+        {
+          "s3FilesAccessPoint": {
+            "accessPointArn": "arn:aws:s3files:us-east-1:111122223333:file-system/fs-22222222222222222/access-point/fsap-22222222222222222",
+            "mountPath": "/mnt/output"
+          }
+        }
+      ],
+      "networkConfig": {
+        "vpcId": "vpc-00000000000000000",
+        "subnets": [
+          "subnet-00000000000000001",
+          "subnet-00000000000000002"
+        ],
+        "securityGroups": [
+          "sg-00000000000000001"
+        ]
+      },
+      "executionRoleArn": "arn:aws:iam::111122223333:role/docintel-alice-runtime",
+      "instrumentation": {
+        "enableOtel": false
+      },
+      "envVars": [
+        {
+          "name": "BMA_HOME_DIR",
+          "value": "/mnt/home"
+        },
+        {
+          "name": "BMA_STATE_DIR",
+          "value": "/mnt/home/.bma"
+        },
+        {
+          "name": "BMA_CODEX_HOME",
+          "value": "/mnt/home/.codex"
+        },
+        {
+          "name": "DISABLE_ADOT_OBSERVABILITY",
+          "value": "true"
+        },
+        {
+          "name": "AGENT_OBSERVABILITY_ENABLED",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "Bob",
+      "build": "Container",
+      "entrypoint": "main.py",
+      "codeLocation": "app/Bob/",
+      "dockerfile": "Dockerfile",
+      "runtimeVersion": "PYTHON_3_14",
+      "networkMode": "VPC",
+      "protocol": "HTTP",
+      "additionalPolicies": [],
+      "tags": {
+        "agentcore:template": "BedrockManagedAgents"
+      },
+      "lifecycleConfiguration": {
+        "idleRuntimeSessionTimeout": 600,
+        "maxLifetime": 1800
+      },
+      "filesystemConfigurations": [
+        {
+          "sessionStorage": {
+            "mountPath": "/mnt/home"
+          }
+        },
+        {
+          "s3FilesAccessPoint": {
+            "accessPointArn": "arn:aws:s3files:us-east-1:111122223333:file-system/fs-33333333333333333/access-point/fsap-33333333333333333",
+            "mountPath": "/mnt/bma"
+          }
+        },
+        {
+          "s3FilesAccessPoint": {
+            "accessPointArn": "arn:aws:s3files:us-east-1:111122223333:file-system/fs-44444444444444444/access-point/fsap-44444444444444444",
+            "mountPath": "/mnt/output"
+          }
+        }
+      ],
+      "networkConfig": {
+        "vpcId": "vpc-00000000000000000",
+        "subnets": [
+          "subnet-00000000000000001",
+          "subnet-00000000000000002"
+        ],
+        "securityGroups": [
+          "sg-00000000000000002"
+        ]
+      },
+      "executionRoleArn": "arn:aws:iam::111122223333:role/docintel-bob-runtime",
+      "instrumentation": {
+        "enableOtel": false
+      },
+      "envVars": [
+        {
+          "name": "BMA_HOME_DIR",
+          "value": "/mnt/home"
+        },
+        {
+          "name": "BMA_STATE_DIR",
+          "value": "/mnt/home/.bma"
+        },
+        {
+          "name": "BMA_CODEX_HOME",
+          "value": "/mnt/home/.codex"
+        },
+        {
+          "name": "DISABLE_ADOT_OBSERVABILITY",
+          "value": "true"
+        },
+        {
+          "name": "AGENT_OBSERVABILITY_ENABLED",
+          "value": "false"
+        }
+      ]
+    }
+  ],
+  "memories": [],
+  "knowledgeBases": [],
+  "credentials": [],
+  "evaluators": [],
+  "onlineEvalConfigs": [],
+  "agentCoreGateways": [],
+  "policyEngines": [],
+  "configBundles": [],
+  "abTests": [],
+  "harnesses": [],
+  "datasets": [],
+  "capacityProviders": [],
+  "payments": []
+}

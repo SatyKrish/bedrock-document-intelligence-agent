@@ -1,0 +1,16 @@
+{
+  "region": "us-east-1",
+  "vpcId": "vpc-00000000000000000",
+  "privateSubnets": [
+    {
+      "subnetId": "subnet-11111111111111111",
+      "routeTableId": "rtb-11111111111111111",
+      "availabilityZone": "us-east-1a"
+    },
+    {
+      "subnetId": "subnet-22222222222222222",
+      "routeTableId": "rtb-22222222222222222",
+      "availabilityZone": "us-east-1b"
+    }
+  ]
+}

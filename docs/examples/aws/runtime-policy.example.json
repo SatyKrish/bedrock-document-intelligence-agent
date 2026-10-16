@@ -1,0 +1,109 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "RegistryAuthentication",
+      "Effect": "Allow",
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*"
+    },
+    {
+      "Sid": "PullOnlyOwnedImage",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
+      ],
+      "Resource": "arn:aws:ecr:us-east-1:__ACCOUNT_ID__:repository/__CLI_OWNER_REPOSITORY__"
+    },
+    {
+      "Sid": "OwnedRuntimeLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:__ACCOUNT_ID__:log-group:/aws/bedrock-agentcore/runtimes/__RUNTIME_LOG_PREFIX__*"
+    },
+    {
+      "Sid": "ManagedEnvironmentConnection",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock-mantle:RegisterEnvironment",
+        "bedrock-mantle:ConnectEnvironment"
+      ],
+      "Resource": "arn:aws:bedrock-mantle:us-east-1:__ACCOUNT_ID__:project/*"
+    },
+    {
+      "Sid": "ValidateOnlyOwnedAccessPoints",
+      "Effect": "Allow",
+      "Action": "s3files:GetAccessPoint",
+      "Resource": [
+        "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__INPUT_FS_ID__",
+        "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__OUTPUT_FS_ID__",
+        "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__INPUT_FS_ID__/access-point/__INPUT_AP_ID__",
+        "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__OUTPUT_FS_ID__/access-point/__OUTPUT_AP_ID__"
+      ]
+    },
+    {
+      "Sid": "OwnedFilesystemValidationReads",
+      "Effect": "Allow",
+      "Action": [
+        "s3files:ListMountTargets",
+        "s3files:GetMountTarget",
+        "s3files:GetFileSystem"
+      ],
+      "Resource": [
+        "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__INPUT_FS_ID__",
+        "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__OUTPUT_FS_ID__"
+      ]
+    },
+    {
+      "Sid": "ReadOnlyInputMount",
+      "Effect": "Allow",
+      "Action": "s3files:ClientMount",
+      "Resource": "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__INPUT_FS_ID__",
+      "Condition": {
+        "ArnEquals": {
+          "s3files:AccessPointArn": "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__INPUT_FS_ID__/access-point/__INPUT_AP_ID__"
+        }
+      }
+    },
+    {
+      "Sid": "OwnedOutputMount",
+      "Effect": "Allow",
+      "Action": [
+        "s3files:ClientMount",
+        "s3files:ClientWrite",
+        "s3files:ClientRootAccess"
+      ],
+      "Resource": "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__OUTPUT_FS_ID__",
+      "Condition": {
+        "ArnEquals": {
+          "s3files:AccessPointArn": "arn:aws:s3files:us-east-1:__ACCOUNT_ID__:file-system/__OUTPUT_FS_ID__/access-point/__OUTPUT_AP_ID__"
+        }
+      }
+    },
+    {
+      "Sid": "DirectOwnedFileReads",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:GetObjectVersion"],
+      "Resource": [
+        "arn:aws:s3:::__INPUT_BUCKET__/*",
+        "arn:aws:s3:::__OUTPUT_BUCKET__/*"
+      ]
+    },
+    {
+      "Sid": "ListOwnedFileBuckets",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": [
+        "arn:aws:s3:::__INPUT_BUCKET__",
+        "arn:aws:s3:::__OUTPUT_BUCKET__"
+      ]
+    }
+  ]
+}

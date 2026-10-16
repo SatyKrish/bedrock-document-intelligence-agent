@@ -1,0 +1,69 @@
+{
+  "status": "proposed-not-approved-not-deployed",
+  "region": "us-east-1",
+  "namespace": "docintel-cli-20261014",
+  "network": {
+    "vpcCidr": "10.88.0.0/24",
+    "privateSubnetCidr": "10.88.0.0/26",
+    "availabilityZoneId": "use1-az1",
+    "subnets": 1,
+    "dnsSupport": true,
+    "dnsHostnames": true,
+    "publicIpAssignment": false,
+    "natGateways": 0,
+    "internetGateways": 0,
+    "peeringConnections": 0,
+    "interfaceEndpoints": [
+      "com.amazonaws.us-east-1.ecr.api",
+      "com.amazonaws.us-east-1.ecr.dkr",
+      "com.amazonaws.us-east-1.logs",
+      "com.amazonaws.us-east-1.bedrock-mantle"
+    ],
+    "privateDnsEnabled": true,
+    "gatewayEndpoints": ["com.amazonaws.us-east-1.s3"],
+    "runtimeSecurityGroups": 2,
+    "mountSecurityGroups": 2,
+    "endpointSecurityGroups": 1,
+    "perOwnerFilesystems": 2,
+    "owners": ["alice", "bob"],
+    "totalFilesystems": 4,
+    "totalAccessPoints": 4,
+    "totalMountTargets": 4
+  },
+  "builds": {
+    "controller": "official @aws/agentcore 0.31.1",
+    "network": "AWS-managed non-VPC",
+    "codebuildProjects": 2,
+    "buildHandlerLambdas": 2,
+    "sourceObjectReads": "Only the two reference asset keys; bucket-location metadata on the existing bootstrap bucket",
+    "runtimeNetworkMode": "VPC",
+    "requiresExplicitProjectCdkCustomizationApproval": true
+  },
+  "budget": {
+    "priorReservationUsd": "4.374",
+    "interfaceEndpoints": 4,
+    "reservedBilledHoursPerEndpoint": 5,
+    "maxWallHoursFromFirstEndpointCreation": 4,
+    "endpointAzHourUsd": "0.01",
+    "endpointDataGb": 2,
+    "endpointDataPerGbUsd": "0.01",
+    "newNetworkReservationUsd": "0.22",
+    "totalReservationUsd": "4.594",
+    "remainingMarginUsd": "0.406",
+    "endpoint730HourCostUsd": "29.20",
+    "endpointRemovalApprovalRequiredBeforeCreate": true,
+    "awsEnforcedCap": false
+  },
+  "identity": {
+    "newResourcesRequiredForRuntimeQualification": false,
+    "hostedWebAndChatgptTesting": "Separate future scope; no identity provider or OAuth client in this plan"
+  },
+  "liveGates": [
+    "Actual returned network IDs, DNS and endpoint policies",
+    "BMA RegisterEnvironment/ConnectEnvironment transport over PrivateLink",
+    "Per-owner IAM/NFS isolation and asynchronous S3 Files synchronization",
+    "New image scan qualification before model turns",
+    "Specific endpoint-removal and owned-compute-stop approval",
+    "Native CLI uninvoked Runtime provisioning before image scan requires explicit decision"
+  ]
+}

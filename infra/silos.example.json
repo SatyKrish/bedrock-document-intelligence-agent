@@ -1,0 +1,20 @@
+{
+  "alice": {
+    "region": "us-east-1",
+    "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime/REPLACE_ALICE_RUNTIME",
+    "roleArn": "arn:aws:iam::123456789012:role/REPLACE_ALICE_SESSION_ROLE",
+    "applicationRoleArn": "arn:aws:iam::123456789012:role/REPLACE_ALICE_APPLICATION_SILO_ROLE",
+    "inputBucket": "replace-alice-input-bucket",
+    "outputBucket": "replace-alice-output-bucket",
+    "model": "openai.gpt-6-luna"
+  },
+  "bob": {
+    "region": "us-east-1",
+    "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime/REPLACE_BOB_RUNTIME",
+    "roleArn": "arn:aws:iam::123456789012:role/REPLACE_BOB_SESSION_ROLE",
+    "applicationRoleArn": "arn:aws:iam::123456789012:role/REPLACE_BOB_APPLICATION_SILO_ROLE",
+    "inputBucket": "replace-bob-input-bucket",
+    "outputBucket": "replace-bob-output-bucket",
+    "model": "openai.gpt-6-luna"
+  }
+}

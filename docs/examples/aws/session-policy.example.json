@@ -1,0 +1,25 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "OnlySelectedModel",
+      "Effect": "Allow",
+      "Action": "bedrock-mantle:CreateInference",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "bedrock-mantle:Model": "openai.gpt-6-luna"
+        }
+      }
+    },
+    {
+      "Sid": "OnlyOwnedRuntime",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock-agentcore:InvokeAgentRuntime",
+        "bedrock-agentcore:StopRuntimeSession"
+      ],
+      "Resource": ["__RUNTIME_ARN__", "__RUNTIME_ARN__/runtime-endpoint/*"]
+    }
+  ]
+}

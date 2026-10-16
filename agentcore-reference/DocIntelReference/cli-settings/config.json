@@ -1,0 +1,6 @@
+{
+  "disableTransactionSearch": true,
+  "telemetry": {
+    "enabled": false
+  }
+}

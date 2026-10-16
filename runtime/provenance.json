@@ -1,0 +1,19 @@
+{
+  "awsBundle": {
+    "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/samples/bma-examples.zip",
+    "sha256": "0cda88723f65079872824b2c64948c2e2379157814578255acefb7cbd6850013",
+    "adapterEntry": "bma/acr/runtime/control_plane.py",
+    "testsEntry": "bma/acr/runtime/test_control_plane.py",
+    "adapterSha256": "89868872a84918daa99d02c290f871f5a7160b266ca443dd75a85187f8fd9393",
+    "testsSha256": "157ee912e9f2134ee44d89d303785fea27c3c6c558692f14b12cc2e8f10513e3"
+  },
+  "codex": {
+    "version": "0.154.0",
+    "url": "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-aarch64-unknown-linux-musl.tar.gz",
+    "sha256": "583b48df32804213bdcd338c2e5adb06b34340821fa757a726cc0a524fa33c27",
+    "archiveEntry": "codex-aarch64-unknown-linux-musl",
+    "architecture": "linux/arm64",
+    "releaseMetadata": "https://api.github.com/repos/openai/codex/releases/tags/rust-v0.154.0",
+    "executableSha256": "9b7c1c7abdc26fc3c4f47c77656a8e9121def5483dbae830ef1ee561758448a9"
+  }
+}

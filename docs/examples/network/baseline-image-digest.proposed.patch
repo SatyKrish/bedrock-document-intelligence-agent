@@ -1,0 +1,16 @@
+--- a/agentcore/cdk/bin/cdk.ts
++++ b/agentcore/cdk/bin/cdk.ts
+@@ -1,4 +1,5 @@
+ #!/usr/bin/env node
++import { pinQualifiedBaselineImage } from '../lib/baseline-image-policy.proposed';
+ import { applyReferenceDeploymentPolicy } from '../lib/reference-deployment-policy';
+ import { AgentCoreStack, type HarnessConfig } from '../lib/cdk-stack';
+ import { ConfigIO, HarnessSpecSchema, type AwsDeploymentTarget } from '@aws/agentcore-cdk';
+@@ -209,6 +210,7 @@
+   }
+ 
+   applyReferenceDeploymentPolicy(app);
++  pinQualifiedBaselineImage(app, JSON.parse(fs.readFileSync(path.join(configRoot, 'baseline-image.proposed.json'), 'utf8')));
+   app.synth();
+ }
+ 

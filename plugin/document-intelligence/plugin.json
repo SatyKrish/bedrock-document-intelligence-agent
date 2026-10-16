@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "document-intelligence",
+  "version": "0.1.0",
+  "description": "Analyze authorized documents through the shared Bedrock Managed Agents application service.",
+  "author": {
+    "name": "Document Intelligence contributors"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Document Intelligence",
+        "shortDescription": "Cited document analysis",
+        "longDescription": "Select authorized sources, start an analysis, reconcile progress and retrieve verified Markdown/CSV reports through an authenticated application backend.",
+        "developerName": "Document Intelligence contributors",
+        "category": "Productivity",
+        "defaultPrompt": "Compare my authorized annual reports and generate a cited Markdown report and KPI CSV."
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ListOnlyOwnedBuckets",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket", "s3:ListBucketVersions"],
+      "Resource": [
+        "arn:aws:s3:::__INPUT_BUCKET__",
+        "arn:aws:s3:::__OUTPUT_BUCKET__"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "aws:ResourceAccount": "__ACCOUNT_ID__"
+        }
+      }
+    },
+    {
+      "Sid": "SynchronizeOnlyOwnedObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:AbortMultipartUpload",
+        "s3:DeleteObject*",
+        "s3:GetObject*",
+        "s3:List*",
+        "s3:PutObject*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::__INPUT_BUCKET__/*",
+        "arn:aws:s3:::__OUTPUT_BUCKET__/*"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "aws:ResourceAccount": "__ACCOUNT_ID__"
+        }
+      }
+    },
+    {
+      "Sid": "ServiceManagedSyncRules",
+      "Effect": "Allow",
+      "Action": [
+        "events:DeleteRule",
+        "events:DisableRule",
+        "events:EnableRule",
+        "events:PutRule",
+        "events:PutTargets",
+        "events:RemoveTargets"
+      ],
+      "Resource": "arn:aws:events:us-east-1:__ACCOUNT_ID__:rule/DO-NOT-DELETE-S3-Files*",
+      "Condition": {
+        "StringEquals": {
+          "events:ManagedBy": "elasticfilesystem.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Sid": "ReadSyncRules",
+      "Effect": "Allow",
+      "Action": ["events:DescribeRule", "events:ListTargetsByRule"],
+      "Resource": "arn:aws:events:us-east-1:__ACCOUNT_ID__:rule/DO-NOT-DELETE-S3-Files*"
+    },
+    {
+      "Sid": "RegionalRuleDiscovery",
+      "Effect": "Allow",
+      "Action": ["events:ListRuleNamesByTarget", "events:ListRules"],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "us-east-1"
+        }
+      }
+    }
+  ]
+}
